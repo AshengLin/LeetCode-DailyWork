@@ -61,8 +61,8 @@ class Solution:
             if l2 is not None:
                 temp += l2.val
                 l2 = l2.next
-            node.next = ListNode(temp%10)
+            node.next = ListNode(temp % 10)
             node = node.next
-            temp = temp // 10
+            temp = temp // 10  # check for carry number
         return result.next
 # leetcode submit region end(Prohibit modification and deletion)

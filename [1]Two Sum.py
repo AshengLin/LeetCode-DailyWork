@@ -48,7 +48,7 @@ from typing import List, Tuple
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        numMap = {}
+        numMap = {}  # dict
         for i in range(len(nums)):
             if numMap.__contains__(target - nums[i]):
                 return [numMap.get(target - nums[i]), i]
