@@ -50,20 +50,16 @@
 from typing import List, Tuple
 class Solution:
     def lengthOfLongestSubstring(self, s: str) -> int:
-        substring = {}
+        substring = []
         ans = 1
-        if s.isspace():
-            return 1
         if s:
             for i in range(len(s)):
-                if substring.__contains__(s[i]):
-                    if len(substring) > ans:
-                        ans = len(substring)
-                    substring = {}
-                substring[s[i]] = i
-                if len(substring) > ans:
-                    ans = len(substring)
-            return ans
+                print(substring)
+                if s[i] in substring:
+                    ans = max(ans, len(substring))
+                    substring = substring[substring.index(s[i])+1:]
+                substring.append(s[i])
+            return max(ans, len(substring))
         else:
             return 0
 # leetcode submit region end(Prohibit modification and deletion)
