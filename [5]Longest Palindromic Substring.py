@@ -47,12 +47,22 @@ from typing import List, Tuple
 class Solution:
     def longestPalindrome(self, s: str) -> str:
         ans = []
+        temp = []
         if s:
             for i in range(len(s)):
-                if ans == [] or s[i-2] == s[i]:
-                    ans.append(s[i])
-
-
+                for j in range(len(s) - i):
+                    temp.append(s[i+j])
+                    if len(temp) % 2:  # odd
+                        if temp[len(temp) // 2 + 1:][::-1] == temp[:len(temp) // 2] is False:
+                            temp.pop()
+                    else:
+                        if temp[len(temp) // 2:][::-1] == temp[:len(temp) // 2] is False:
+                            temp.pop()
+                    if len(temp) >= len(ans):
+                        ans = temp
+                    print(temp,'      ', ans)
+                    
+                temp = []
         return ''.join(ans)
         
 # leetcode submit region end(Prohibit modification and deletion)
