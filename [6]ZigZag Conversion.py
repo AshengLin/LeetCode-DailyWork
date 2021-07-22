@@ -62,8 +62,11 @@ class Solution:
     def convert(self, s: str, numRows: int) -> str:
         num_array = [''] * numRows
         for i in range(len(s)):
-            if (i//numRows)%2:
-                num_array[i % numRows] += i
-
-        return num_array
+            if (i % (2 * numRows - 2)) < numRows:
+                num_array[i % (2 * numRows - 2)] += str(s[i])
+                print(i % (2 * numRows - 2))
+            else:
+                num_array[(numRows - 2) - (i % numRows)] += str(s[i])
+                print((numRows - 2) - (i % numRows))
+        return ''.join(num_array)
 # leetcode submit region end(Prohibit modification and deletion)
