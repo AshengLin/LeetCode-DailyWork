@@ -49,6 +49,7 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
+import re
 class Solution:
     def isPalindrome(self, x: int) -> bool:
         return str(x) == str(x)[::-1]

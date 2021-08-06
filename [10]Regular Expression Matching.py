@@ -66,7 +66,13 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
+import re
 class Solution:
     def isMatch(self, s: str, p: str) -> bool:
-        
+        ans = re.match(p, s)
+        if ans is None:
+            return False
+        if ans.group(0) != s:
+            return False
+        return True
 # leetcode submit region end(Prohibit modification and deletion)
