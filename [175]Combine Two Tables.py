@@ -39,5 +39,13 @@
 
 
 # There is no code of Python3 type for this problem
+import sqlite3
+conn = sqlite3.connect("data.db")
+c = conn.cursor()
 
-select FirstName, LastName, City, State from Person left join Address on Person.PersonId = Address.PersonId
+
+c.execute('''CREATE TABLE Person(PersonId INT PRIMARY KEY NOT NULL, FirstName varchar NOT NULL, LastName varchar NOT NULL);''')
+
+c.execute('''CREATE TABLE Address(AddressId INT PRIMARY KEY NOT NULL,PersonId varchar NOT NULL, City varchar NOT NULL, State varchar NOT NULL); ''')
+
+c.execute('''select FirstName, LastName, City, State from Person left join Address on Person.PersonId = Address.PersonId''')
