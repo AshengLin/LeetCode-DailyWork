@@ -48,4 +48,6 @@ c.execute('''CREATE TABLE Person(PersonId INT PRIMARY KEY NOT NULL, FirstName va
 
 c.execute('''CREATE TABLE Address(AddressId INT PRIMARY KEY NOT NULL,PersonId varchar NOT NULL, City varchar NOT NULL, State varchar NOT NULL); ''')
 
-c.execute('''select FirstName, LastName, City, State from Person left join Address on Person.PersonId = Address.PersonId''')
+results = c.execute('''select FirstName, LastName, City, State from Person left join Address on Person.PersonId = Address.PersonId''')
+for item in results:
+    print(item)
