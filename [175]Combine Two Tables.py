@@ -40,6 +40,7 @@
 
 # There is no code of Python3 type for this problem
 import sqlite3
+import pandas as pd
 conn = sqlite3.connect("data.db")
 c = conn.cursor()
 
@@ -49,5 +50,13 @@ c.execute('''CREATE TABLE Person(PersonId INT PRIMARY KEY NOT NULL, FirstName va
 c.execute('''CREATE TABLE Address(AddressId INT PRIMARY KEY NOT NULL,PersonId varchar NOT NULL, City varchar NOT NULL, State varchar NOT NULL); ''')
 
 results = c.execute('''select FirstName, LastName, City, State from Person left join Address on Person.PersonId = Address.PersonId''')
-for item in results:
-    print(item)
+
+rows = c.fetchall()
+for row in rows:
+    print(row)
+#
+# for item in results:
+#     print(item)
+#
+#
+# df = pd.read_sql('select * from table', con=self.client)
