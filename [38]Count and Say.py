@@ -51,26 +51,23 @@
 
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
-    def __init__(self):
-        self.s = 0
-        self.e = 0
-
     def countAndSay(self, n: int) -> str:
         result = '1'
-        for i in range(n-1):
+        if n <= 0:
+            return ""
+        while n:
             temp = ''
             if n == 1:
                 break
-            self.s = 0
-            self.e = 0
-            while self.s < len(result):
-                self.e = self.s+1
-                while self.e < (len(result)-1) and str(result)[self.s] == str(result)[self.e]:
-                    self.e += 1
-                temp += (str(self.e-self.s) + str(str(result)[self.s]))
-                print(self.s, 'and ', self.e)
-                self.s = self.e
+            s = 0
+            while s < len(result):
+                count = 1
+                while (s+1) < len(result) and str(result)[s] == str(result)[s+1]:
+                    count += 1
+                    s += 1
+                temp += (str(count) + str(str(result)[s]))
+                s += 1
             result = temp
-            print(result)
+            n -= 1
         return str(result)
 # leetcode submit region end(Prohibit modification and deletion)
