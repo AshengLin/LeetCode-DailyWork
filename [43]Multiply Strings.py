@@ -28,9 +28,11 @@
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def multiply(self, num1: str, num2: str) -> str:
+        ans = ''
         for i in len(num2):
             for j in len(num1):
                 temp = num2[-i-1] * num1[-j-1]
-                part_ans[] = temp % 10
+                carry = temp // 10
+                ans[i] = (temp + carry) % 10
         
 # leetcode submit region end(Prohibit modification and deletion)
