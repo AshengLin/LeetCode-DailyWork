@@ -30,9 +30,12 @@ class Solution:
     def multiply(self, num1: str, num2: str) -> str:
         ans = ''
         for i in len(num2):
+            current = 0
+            carry = 0
             for j in len(num1):
                 temp = num2[-i-1] * num1[-j-1]
                 carry = temp // 10
+
                 ans[i] = (temp + carry) % 10
         
 # leetcode submit region end(Prohibit modification and deletion)
