@@ -28,14 +28,19 @@
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def multiply(self, num1: str, num2: str) -> str:
-        ans = ''
-        for i in len(num2):
+        ans = 0
+        for i in range(len(num2)):
             current = 0
-            carry = 0
-            for j in len(num1):
-                temp = num2[-i-1] * num1[-j-1]
-                carry = temp // 10
+            next = 0
+            for j in range(len(num1)):
+                multi = int(num2[-i-1]) * int(num1[-j-1])
 
-                ans[i] = (temp + carry) % 10
-        
+                carry = multi // 10
+                temp = multi % 10
+
+                current += (temp + next) * (10 ** j)
+                next = carry
+            current += next * (10 ** len(num1))
+            ans += current * (10 ** i)
+        return str(ans)
 # leetcode submit region end(Prohibit modification and deletion)
