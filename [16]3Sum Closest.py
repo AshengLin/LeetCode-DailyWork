@@ -38,23 +38,21 @@ class Solution:
     def threeSumClosest(self, nums: List[int], target: int) -> int:
         nums.sort()
         N = len(nums)
-        ans = []
+        closet_sum = nums[0] + nums[1] + nums[2]
         for t in range(N - 2):
             if t > 0 and nums[t] == nums[t - 1]:
                 continue
             i, j = t + 1, N - 1
-
             while i < j:
                 temp_sum = nums[t] + nums[i] + nums[j]
-                closet_sum = min(temp_sum, closet_sum)
-                if temp_sum <= closet_sum:
-                    ans.append([nums[t], nums[i], nums[j]])
+                if abs(temp_sum-target) < abs(closet_sum-target):
+                    closet_sum = nums[t] + nums[i] + nums[j]
                     i += 1
                     j -= 1
-                elif temp_sum < 0:
+                elif temp_sum-target < 0:
                     i += 1  # 加大
                 else:
                     j -= 1  # 縮小
-        return ans
+        return closet_sum
 
 # leetcode submit region end(Prohibit modification and deletion)
