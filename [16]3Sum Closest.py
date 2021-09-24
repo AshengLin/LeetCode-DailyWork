@@ -45,14 +45,13 @@ class Solution:
             i, j = t + 1, N - 1
             while i < j:
                 temp_sum = nums[t] + nums[i] + nums[j]
-                if abs(temp_sum-target) < abs(closet_sum-target):
-                    closet_sum = nums[t] + nums[i] + nums[j]
-                    i += 1
-                    j -= 1
-                elif temp_sum-target < 0:
+                if temp_sum-target < 0:
                     i += 1  # 加大
                 else:
                     j -= 1  # 縮小
+                if abs(temp_sum-target) < abs(closet_sum-target):
+                    print(temp_sum)
+                    closet_sum = nums[t] + nums[i] + nums[j]
         return closet_sum
 
 # leetcode submit region end(Prohibit modification and deletion)
