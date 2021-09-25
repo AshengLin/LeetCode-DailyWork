@@ -51,7 +51,7 @@ class Solution:
                     j -= 1  # 縮小
                 if abs(temp_sum-target) < abs(closet_sum-target):
                     print(temp_sum)
-                    closet_sum = nums[t] + nums[i] + nums[j]
+                    closet_sum = temp_sum
         return closet_sum
 
 # leetcode submit region end(Prohibit modification and deletion)
