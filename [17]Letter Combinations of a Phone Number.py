@@ -44,8 +44,20 @@
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
         d = [" ", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
+        l = len(digits)
+        letter_set = []
+        ans = []
         for i in digits:
-            print(d[int(i)])
+            letter_set.append(d[int(i)])
+        for j in range(len(letter_set)-1):
+            for e in letter_set[j]:
+                for k in letter_set[j+1]:
+                    ans.append(e+k)
+        return ans
+
+
+
+
 
         
 # leetcode submit region end(Prohibit modification and deletion)
