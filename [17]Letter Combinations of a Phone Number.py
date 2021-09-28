@@ -43,16 +43,23 @@
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
+        if not digits:
+            return []
         d = [" ", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
-        l = len(digits)
         letter_set = []
         ans = []
         for i in digits:
             letter_set.append(d[int(i)])
-        for j in range(len(letter_set)-1):
+        for s in letter_set[0]:
+            ans.append(s)
+        j = 1
+        while j <= len(letter_set):
             for e in letter_set[j]:
-                for k in letter_set[j+1]:
-                    ans.append(e+k)
+                for k in ans:
+                    ans.append(k+e)
+            # ans = [item for item in ans if len(item) > j]
+            print(ans)
+            j += 1
         return ans
 
 
