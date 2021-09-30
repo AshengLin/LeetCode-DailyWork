@@ -50,16 +50,18 @@ class Solution:
         ans = []
         for i in digits:
             letter_set.append(d[int(i)])
+        print(letter_set)
         for s in letter_set[0]:
             ans.append(s)
         j = 1
-        while j <= len(letter_set):
-            for e in letter_set[j]:
-                for k in ans:
-                    ans.append(k+e)
-            # ans = [item for item in ans if len(item) > j]
-            print(ans)
-            j += 1
+        # while j <= len(letter_set):
+        #     for e in letter_set[j]:
+        #         for k in ans:
+        #             ans.append(k+e)
+        #     # ans = [item for item in ans if len(item) > j]
+        #     print(ans)
+        #     j += 1
+
         return ans
 
 
