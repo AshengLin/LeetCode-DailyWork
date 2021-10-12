@@ -54,12 +54,12 @@ class Solution:
             return head.next
         firstNode = head
         nextNode = head.next.next
-        while node.next:
-            firstNode = firstNode.next
+        while node.next:  # 用node去讀現在是倒數了嗎
+            firstNode = firstNode.next  # 數下去
             node = node.next
-            if nextNode:
+            if nextNode:  # 確認是否到最後了
                 nextNode = nextNode.next
         if firstNode:
-            firstNode.next = nextNode
+            firstNode.next = nextNode  # 接上
         return head
 # leetcode submit region end(Prohibit modification and deletion)
