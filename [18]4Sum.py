@@ -37,22 +37,31 @@
 
 
 # leetcode submit region begin(Prohibit modification and deletion)
+
 class Solution:
     def fourSum(self, nums: List[int], target: int) -> List[List[int]]:
         nums = sorted(nums)
         ans = []
         # key : 兩端, 中間去夾擊target， 若湊出來都太大, 右邊下修， 反之
         (s, m1, m2, e) = (0, 1, len(nums)-2, len(nums)-1)
-        while (s+3 == m1+2 == m2+1 == e) is False and s < m1 < m2 < e:
-            print([s, m1, m2, e])
-            (m1, m2) = (s+1, e-1)  # reset
-            temp = [nums[s], nums[m1], nums[m2], nums[e]]
-            if sum(temp) < target:
+        while s+2 < e:
+            if m1 == m2:
                 s += 1
-            elif sum(temp) > target:
-                e -= 1
+                (m1, m2) = (s+1, e-1)  # reset
+            temp = [nums[s], nums[m1], nums[m2], nums[e]]
+            if sum(temp) < target and s < m1 < m2 < e:
+                m1 += 1
+            elif sum(temp) > target and s < m1 < m2 < e:
+                m2 -= 1
+            elif s < m1 < m2 < e is False:
+                if sum(temp) <= target:
+                    s += 1
+                else:
+                    e -= 1
             else:
                 ans.append(temp)
-                s += 1
+                print('temp = ', temp)
+                print('index = ', [s, m1, m2, e])
+                m1 += 1
         return ans
 # leetcode submit region end(Prohibit modification and deletion)
