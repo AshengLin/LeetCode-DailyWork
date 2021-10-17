@@ -45,23 +45,38 @@ class Solution:
         ans = []
         # key : 兩端, 中間去夾擊target， 若湊出來都太大, 右邊下修， 反之
         (s, m1, m2, e) = (0, 1, len(nums)-2, len(nums)-1)
+        board_1, board_2 = s, e
         while s+2 < e:
-            if m1 == m2:
-                if sum([nums[s], nums[m1], nums[m2], nums[e]]) < target:
-                    s += 1
-                else:
-                    e -= 1
-                (m1, m2) = (s+1, e-1)  # reset
             temp = [nums[s], nums[m1], nums[m2], nums[e]]
-            if sum(temp) < target:
+            if sum(temp) < target:  # 掃內圈
                 m1 += 1
             elif sum(temp) > target:
                 m2 -= 1
             else:
                 if temp not in ans:
                     ans.append(temp)
-                print('temp = ', temp)
-                print('index = ', [s, m1, m2, e])
+                print('append ans = ', [s, m1, m2, e])
                 m1 += 1
+            if m1 == m2:  # 判斷是否該移動s,e
+                temp = [nums[s], nums[s+1], nums[e-1], nums[e]]
+                if m1 + 1 == e or m1 - 1 == s:  # 查完這圈
+                    test = [nums[board_1], nums[m1], nums[m2], nums[board_2]]
+                    if sum(test) < target:
+                        board_1 += 1
+                    else:
+                        board_2 -= 1
+                    s, m1, m2, e = board_1, board_1+1, board_2-1, board_2
+                    print('change board = ', [s, m1, m2, e])
+                elif sum(temp) < target:
+                    s += 1
+                    print('change s', s)
+                else:
+                    e -= 1
+                    print('change e', e)
+                (m1, m2) = (s + 1, e - 1)
+
+
+            print('end = ', [s, m1, m2, e])
+
         return ans
 # leetcode submit region end(Prohibit modification and deletion)
