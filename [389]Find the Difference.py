@@ -36,6 +36,11 @@
 # leetcode submit region begin(Prohibit modification and deletion)
 class Solution:
     def findTheDifference(self, s: str, t: str) -> str:
-        res = t.replace(s, '', 1)
-        return res
+        '''
+        用加減法找出該字母
+        '''
+        res = ord(t[-1])    # 先轉換為數字
+        for i in range(len(s)):
+            res = res + ord(t[i]) - ord(s[i])  # +t-s
+        return chr(res)  # 剩下的轉回字母
 # leetcode submit region end(Prohibit modification and deletion)
